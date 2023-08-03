@@ -1,0 +1,75 @@
+﻿    `@{
+    ViewData["Title"] = "Home Page";
+    Layout = null;
+    }
+@model  IList<CustomerModel>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <title>Invoice</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+
+        <div class="container">
+            <h2>Invoice</h2>
+            <a href="/create">Add Customer Invoice</a>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>CustomerId</th>
+                        <th>FirstName</th>
+                        <th>LastName</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Country Code</th>
+                        <th>Gender</th>
+                        <th>Balance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  @foreach(var i in Model)
+                  {
+                    <tr>
+                        <td>
+                            @i.id
+                        </td>
+                        <td>
+                            @i.firstname
+                        </td>
+                        <td>
+                            @i.lastname
+                        </td>
+                        <td>
+                            <a href="mailto:@(i.email)">@i.email</a>
+                        </td>
+                        <td>
+                            @i.phone_number
+                        </td>
+                        <td>
+                            @i.country_code
+                        </td>
+                        <td>
+                            @i.gender
+                        </td>
+                        <td>
+                           $@(i.balance)
+                        </td>
+                        <td>
+                            <a href="/edit/@i.id.ToString()">Edit</a>
+                        </td>
+                        <td>
+                            <a href="/delete/@i.id">Delete</a>
+                        </td>
+                    </tr>
+                  }
+                </tbody>
+            </table>
+        </div>
+
+    </body>
+</html>
